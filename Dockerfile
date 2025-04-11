@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Use gunicorn to serve the app on port 8080 (as expected by Azure)
-CMD ["gunicorn", "-b", "0.0.0.0:8081", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
