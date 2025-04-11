@@ -1,15 +1,15 @@
-# Use official Python image from DockerHub
+# Use official Python image
 FROM python:3.10-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements file and install dependencies
+# Copy and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the application code
 COPY . .
 
-# Set the default command to run your app
-CMD ["python", "app.py"]
+# Use gunicorn to serve the app on port 8080 (as expected by Azure)
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
